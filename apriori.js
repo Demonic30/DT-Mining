@@ -16,11 +16,11 @@ function transaction(t) {
     html += '<div class="form-row">' +
         '<div class="form-group col-md-6">' +
         '<label for="inputEmail4">Minimum Support</label>' +
-        '<input type="number" min="10" class="form-control"  id="inputsup" placeholder="40%">' +
+        '<input type="number" min="10" class="form-control"  id="inputsup" value="40" placeholder="40%">' +
         '</div>' +
         '<div class="form-group col-md-6">' +
         '<label for="inputPassword4">Minimum Confidence</label>' +
-        '<input type="number" min="10" class="form-control" id="inputcon" placeholder="50%">' +
+        '<input type="number" min="10" class="form-control" id="inputcon" value="70" placeholder="70%">' +
         '</div>' +
         '</div>' +
         '<center>' +
@@ -29,7 +29,7 @@ function transaction(t) {
         '<hr class="my-4">';
 
     document.getElementById('tran').innerHTML = html;
-    html=''
+    html =''
 }
 
 var data = []
@@ -47,13 +47,14 @@ function apriori() {
     }
     getApriori()
 }
+var html1=''
 function getApriori() {
 
     var support = document.getElementById('inputsup').value /100 * tranID;
     var confidence = document.getElementById('inputcon').value
     console.log(support,confidence);
     
-    var html1 = '<div class="form-group">'+
+    html1 += '<div class="form-group">'+
         '<label for="exampleFormControlTextarea1"><h3>Results</h3></label>'+
         '<textarea class="form-control" id="exampleFormControlTextarea1" cols="100" readonly="readonly" rows="15" >'
 
@@ -98,7 +99,7 @@ function getApriori() {
     console.log(itemset);
     html1 += itemset.length +'  Large Itemsets (by Apriori): \n'
     itemset.forEach(function(set) {
-        html1 += '{'+set.item +'}'+' ( Support: '+ (set.sup / tranID)*100+' % ) \n'; 
+        html1 += '{ '+set.item +' }'+' ( Support: '+ (set.sup / tranID)*100+' % ) \n'; 
     });
 
     function contains(haystack, needles) {
@@ -123,7 +124,7 @@ var count2 = 0
                         if (subset.sort().toString() == data.item.sort().toString() && (set2.sup / data.sup) * 100 >= confidence) {
                             var infor = removeFromArray(set2.item, subset)
 
-                             i += '{'+subset.toString()+'}' + ' => '+'{'+ infor.toString() +'}'+ '%, Support: '+(data.sup/ tranID)*100+"  ( Confidence: "+ (set2.sup / data.sup)*100 +'% )\n'
+                             i += '{ '+subset.toString()+' }' + ' => '+'{ '+ infor.toString() +' }  ( Support: '+(data.sup/ tranID)*100+'%,  Confidence: '+ (set2.sup / data.sup)*100 +'% )\n'
                              count2++
 
 
@@ -142,6 +143,6 @@ var count2 = 0
     }
 
     document.getElementById('strong').innerHTML = html1;
-
-    html1=''
+    html1 =''
+    data = []
 }
