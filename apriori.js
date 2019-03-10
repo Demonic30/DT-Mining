@@ -16,19 +16,20 @@ function transaction(t) {
     html += '<div class="form-row">' +
         '<div class="form-group col-md-6">' +
         '<label for="inputEmail4">Minimum Support</label>' +
-        '<input type="text" class="form-control"  id="inputsup" placeholder="40%">' +
+        '<input type="number" min="10" class="form-control"  id="inputsup" placeholder="40%">' +
         '</div>' +
         '<div class="form-group col-md-6">' +
         '<label for="inputPassword4">Minimum Confidence</label>' +
-        '<input type="text" class="form-control" id="inputcon" placeholder="50%">' +
+        '<input type="number" min="10" class="form-control" id="inputcon" placeholder="50%">' +
         '</div>' +
         '</div>' +
         '<center>' +
-        '<a class="btn btn-info btn-lg" onclick="apriori()" role="button">APRIORI</a>' +
+        '<a class="btn btn-info btn-lg" onclick="apriori()" role="button"><i class="fab fa-artstation"></i> APRIORI</a> <a class="btn btn-warning btn-lg" href="index.html" role="button"><i class="fas fa-retweet"></i> RESET</a>'+
         '</center>' +
         '<hr class="my-4">';
 
     document.getElementById('tran').innerHTML = html;
+    html=''
 }
 
 var data = []
@@ -53,8 +54,8 @@ function getApriori() {
     console.log(support,confidence);
     
     var html1 = '<div class="form-group">'+
-        '<label for="exampleFormControlTextarea1">Results</label>'+
-        '<textarea class="form-control" id="exampleFormControlTextarea1" cols="73" readonly="readonly" rows="3" >'
+        '<label for="exampleFormControlTextarea1"><h3>Results</h3></label>'+
+        '<textarea class="form-control" id="exampleFormControlTextarea1" cols="100" readonly="readonly" rows="15" >'
 
     var arr = [];
     data.forEach(function (data) {
@@ -95,7 +96,7 @@ function getApriori() {
         }
     });
     console.log(itemset);
-    html1 += itemset.length +' Large Itemsets (by Apriori): \n'
+    html1 += itemset.length +'  Large Itemsets (by Apriori): \n'
     itemset.forEach(function(set) {
         html1 += '{'+set.item +'}'+' ( Support: '+ (set.sup / tranID)*100+' % ) \n'; 
     });
@@ -122,7 +123,7 @@ var count2 = 0
                         if (subset.sort().toString() == data.item.sort().toString() && (set2.sup / data.sup) * 100 >= confidence) {
                             var infor = removeFromArray(set2.item, subset)
 
-                             i += '{'+subset.toString()+'}' + ' => '+'{'+ infor.toString() +'}'+ "  ( Confidence: "+ (set2.sup / data.sup)*100 +'%, Support: '+(data.sup/ tranID)*100+'% )\n'
+                             i += '{'+subset.toString()+'}' + ' => '+'{'+ infor.toString() +'}'+ '%, Support: '+(data.sup/ tranID)*100+"  ( Confidence: "+ (set2.sup / data.sup)*100 +'% )\n'
                              count2++
 
 
@@ -132,7 +133,7 @@ var count2 = 0
             });
         }
     });
-    html1 += count2+' Association Rules'+'\n'+i+
+    html1 += '\n'+count2+'  Association Rules'+'\n'+i+
              '</textarea>'+
              '</div>';
 
@@ -141,4 +142,6 @@ var count2 = 0
     }
 
     document.getElementById('strong').innerHTML = html1;
+
+    html1=''
 }

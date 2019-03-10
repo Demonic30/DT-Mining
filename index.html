@@ -12,6 +12,7 @@
         crossorigin="anonymous">
     <script src="apriori.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css">
 
 </head>
 
@@ -20,14 +21,17 @@
     <br>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">APRIORI ALGORITHM</h1>
+            <h1 class="display-4">
+                <center>APRIORI ALGORITHM</center>
+            </h1>
             <hr class="my-4">
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">
                         <p class="lead">Enter Transactions</p>
                     </label>
-                    <input onchange="transaction(this.value)" type="number" min="1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Transactions">
+                    <input onchange="transaction(this.value)" type="number" min="1" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter Transactions">
                     <small id="emailHelp" class="form-text text-muted">Transactions more than 1</small>
                 </div>
 
@@ -40,7 +44,7 @@
                 </div>
 
             </form>
-            
+
         </div>
     </div>
     <!-- Optional JavaScript -->
@@ -54,9 +58,15 @@
 </body>
 
 <style>
-    body{
+    body {
         background-color: #363636;
         font-family: 'Patua One', cursive;
+        background-image: url(http://www.sdjgjx.com/up/pc/background%20hd.jpg);
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+        position: relative;
+        background-attachment: fixed; 
     }
 </style>
 
