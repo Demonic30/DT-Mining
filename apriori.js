@@ -10,17 +10,17 @@ function transaction(t) {
 
         html += '<div class="form-group">' +
             '<label for="exampleFormControlInput1">Transactions ' + index + '</label>' +
-            '<input type="text" class="form-control" name="' + index + '" id="' + index + '" placeholder="A,B,C,D,E">' +
+            '<input type="text" class="form-control" name="' + index + '" id="' + index + '" placeholder="Ex. A,B,C,D,E">' +
             '</div>';
     }
     html += '<div class="form-row">' +
         '<div class="form-group col-md-6">' +
         '<label for="inputEmail4">Minimum Support</label>' +
-        '<input type="number" min="10" class="form-control"  id="inputsup" value="40" placeholder="40%">' +
+        '<input type="number" min="10" class="form-control"  id="inputsup" value="" placeholder="Ex. 40%">' +
         '</div>' +
         '<div class="form-group col-md-6">' +
         '<label for="inputPassword4">Minimum Confidence</label>' +
-        '<input type="number" min="10" class="form-control" id="inputcon" value="70" placeholder="70%">' +
+        '<input type="number" min="10" class="form-control" id="inputcon" value="" placeholder="Ex. 70%">' +
         '</div>' +
         '</div>' +
         '<center>' +
@@ -97,9 +97,9 @@ function getApriori() {
         }
     });
     console.log(itemset);
-    html1 += itemset.length +'  Large Itemsets (by Apriori): \n'
+    html1 += itemset.length +'  Frequent Itemsets (by Apriori Algorithms) : \n'
     itemset.forEach(function(set) {
-        html1 += '{ '+set.item +' }'+' ( Support: '+ (set.sup / tranID)*100+' % ) \n'; 
+        html1 += '{ '+set.item +' }'+'  ( Support : '+ (set.sup / tranID)*100+'% ) \n'; 
     });
 
     function contains(haystack, needles) {
@@ -124,7 +124,7 @@ var count2 = 0
                         if (subset.sort().toString() == data.item.sort().toString() && (set2.sup / data.sup) * 100 >= confidence) {
                             var infor = removeFromArray(set2.item, subset)
 
-                             i += '{ '+subset.toString()+' }' + ' => '+'{ '+ infor.toString() +' }  ( Support: '+(data.sup/ tranID)*100+'%,  Confidence: '+ (set2.sup / data.sup)*100 +'% )\n'
+                             i += '{ '+subset.toString()+' }' + ' => '+'{ '+ infor.toString() +' }  ( Support : '+(data.sup/ tranID)*100+'%,  Confidence : '+ (set2.sup / data.sup)*100 +'% )\n'
                              count2++
 
 
@@ -134,7 +134,7 @@ var count2 = 0
             });
         }
     });
-    html1 += '\n'+count2+'  Association Rules'+'\n'+i+
+    html1 += '\n'+count2+'  Strong Association Rules'+'\n'+i+
              '</textarea>'+
              '</div>';
 
